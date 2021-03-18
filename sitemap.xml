@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://neversame.stream/2021/03/17/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-1/</loc>
+    <loc>https://robot9.github.io/2021/03/17/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-1/</loc>
     
     <lastmod>2021-03-18</lastmod>
     
   </url>
   
   <url>
-    <loc>http://neversame.stream/2021/03/18/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-2/</loc>
+    <loc>https://robot9.github.io/2021/03/18/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-2/</loc>
     
     <lastmod>2021-03-18</lastmod>
     
@@ -17,7 +17,7 @@
   
 
   <url>
-    <loc>http://neversame.stream/</loc>
+    <loc>https://robot9.github.io/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -25,21 +25,21 @@
 
   
   <url>
-    <loc>http://neversame.stream/tags/docker/</loc>
+    <loc>https://robot9.github.io/tags/docker/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://neversame.stream/tags/scrapy/</loc>
+    <loc>https://robot9.github.io/tags/scrapy/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://neversame.stream/tags/scrapyweb/</loc>
+    <loc>https://robot9.github.io/tags/scrapyweb/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -48,7 +48,7 @@
 
   
   <url>
-    <loc>http://neversame.stream/categories/app-trend/</loc>
+    <loc>https://robot9.github.io/categories/app-trend/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>NeverSame.Stream</title>
+  <title>Blog(robot9)</title>
   
   
-  <link href="http://neversame.stream/atom.xml" rel="self"/>
+  <link href="https://robot9.github.io/atom.xml" rel="self"/>
   
-  <link href="http://neversame.stream/"/>
+  <link href="https://robot9.github.io/"/>
   <updated>2021-03-18T03:29:14.127Z</updated>
-  <id>http://neversame.stream/</id>
+  <id>https://robot9.github.io/</id>
   
   <author>
     <name>robot9</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Trending Apps: 从头开始分析流行应用 - 采集篇 - 环境设置 - 2</title>
-    <link href="http://neversame.stream/2021/03/18/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-2/"/>
-    <id>http://neversame.stream/2021/03/18/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-2/</id>
+    <link href="https://robot9.github.io/2021/03/18/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-2/"/>
+    <id>https://robot9.github.io/2021/03/18/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-2/</id>
     <published>2021-03-18T00:22:00.000Z</published>
     <updated>2021-03-18T03:29:14.127Z</updated>
     
@@ -38,21 +38,21 @@
     
     
     
-    <category term="app_trend" scheme="http://neversame.stream/categories/app-trend/"/>
+    <category term="app_trend" scheme="https://robot9.github.io/categories/app-trend/"/>
     
     
-    <category term="docker" scheme="http://neversame.stream/tags/docker/"/>
+    <category term="docker" scheme="https://robot9.github.io/tags/docker/"/>
     
-    <category term="scrapy" scheme="http://neversame.stream/tags/scrapy/"/>
+    <category term="scrapy" scheme="https://robot9.github.io/tags/scrapy/"/>
     
-    <category term="scrapyweb" scheme="http://neversame.stream/tags/scrapyweb/"/>
+    <category term="scrapyweb" scheme="https://robot9.github.io/tags/scrapyweb/"/>
     
   </entry>
   
   <entry>
     <title>Trending Apps: 从头开始分析流行应用 - 采集篇 - 环境设置 - 1</title>
-    <link href="http://neversame.stream/2021/03/17/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-1/"/>
-    <id>http://neversame.stream/2021/03/17/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-1/</id>
+    <link href="https://robot9.github.io/2021/03/17/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-1/"/>
+    <id>https://robot9.github.io/2021/03/17/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-1/</id>
     <published>2021-03-17T21:20:00.000Z</published>
     <updated>2021-03-18T03:29:50.972Z</updated>
     
@@ -73,14 +73,14 @@
     
     
     
-    <category term="app_trend" scheme="http://neversame.stream/categories/app-trend/"/>
+    <category term="app_trend" scheme="https://robot9.github.io/categories/app-trend/"/>
     
     
-    <category term="docker" scheme="http://neversame.stream/tags/docker/"/>
+    <category term="docker" scheme="https://robot9.github.io/tags/docker/"/>
     
-    <category term="scrapy" scheme="http://neversame.stream/tags/scrapy/"/>
+    <category term="scrapy" scheme="https://robot9.github.io/tags/scrapy/"/>
     
-    <category term="scrapyweb" scheme="http://neversame.stream/tags/scrapyweb/"/>
+    <category term="scrapyweb" scheme="https://robot9.github.io/tags/scrapyweb/"/>
     
   </entry>
   
