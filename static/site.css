@@ -302,11 +302,9 @@ header {
 header .logo-link { 
 	float: left;
 	margin-top: 9px;
-	transform: rotate(0deg);
 	transition: 0.6s ease-in-out;
 }
 header .logo-link:hover {
-	transform: rotate(360deg);
 }
 
 header .nav {
