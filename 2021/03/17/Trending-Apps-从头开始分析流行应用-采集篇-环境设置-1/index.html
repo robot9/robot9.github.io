@@ -1,0 +1,180 @@
+<!DOCTYPE html><html lang="zh-cn,en,default"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="1EB8XoOl0C"><meta name="google-site-verification" content="K7thEgdLm0UfRWJ5MGdF7sCcjClSzAlxFLPv2Oz5CGM"><title> Trending Apps: 从头开始分析流行应用 - 采集篇 - 环境设置 - 1 · NeverSame.Stream</title><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Trending Apps: 从头开始分析流行应用 - 采集篇 - 环境设置 - 1 - robot9"><meta name="keywords"><meta name="author" content="robot9"><link rel="short icon" href="/static/favicon.ico"><link rel="stylesheet" href="/static/site.css"><link rel="search" type="application/opensearchdescription+xml" href="http://neversame.stream/atom.xml" title="NeverSame.Stream"><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="NeverSame.Stream" type="application/atom+xml">
+</head><body><header><div class="header row"> <a href="/" class="logo-link"><img src="/static/logo.png"></a><ul id="nav_list" class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" data-hover="博文" class="nav-list-link">博文</a></li><li class="nav-list-item"><a href="/archives/" target="_self" data-hover="归档" class="nav-list-link">归档</a></li></ul><div class="search"><a id="search_btn" href="#search"></a></div><div id="nav_btn" class="nav-btn"><span></span><span></span><span></span></div></div></header><div class="row scroll-con"><section class="container"><!-- for archive page--><div id="postAr" class="post"><article class="post-block"><h1 class="post-title">Trending Apps: 从头开始分析流行应用 - 采集篇 - 环境设置 - 1</h1><div class="post-info">2021-03-17<p class="visit"><i data-identity="2021/03/17/Trending-Apps-从头开始分析流行应用-采集篇-环境设置-1/" class="article-timer"></i><span>次访问</span></p></div><div class="post-content"><h2 id="项目目标"><a href="#项目目标" class="headerlink" title="项目目标"></a>项目目标</h2><p>收集最新的iOS App排名，并分析流行趋势</p>
+<h2 id="采集篇"><a href="#采集篇" class="headerlink" title="采集篇"></a>采集篇</h2><h3 id="使用到的tools"><a href="#使用到的tools" class="headerlink" title="使用到的tools"></a>使用到的tools</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://scrapy.org/">scrapy</a>: 基于python的网页采集框架</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/my8100/scrapydweb">scrapydweb</a>: 用于 Scrapyd 集群管理的 web 应用，支持 Scrapy 日志分析和可视化。</li>
+<li><a target="_blank" rel="noopener" href="https://www.docker.com/">docker</a>: 多服务容器管理</li>
+</ol>
+<h3 id="1-创建docker-instance"><a href="#1-创建docker-instance" class="headerlink" title="1. 创建docker instance"></a>1. 创建docker instance</h3><h4 id="1-1-准备工作："><a href="#1-1-准备工作：" class="headerlink" title="1.1 准备工作："></a>1.1 准备工作：</h4><ol>
+<li>一台linux服务器</li>
+<li>安装 docker 以及 <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/">docker-compose</a> 工具</li>
+</ol>
+<h4 id="1-2-文件目录"><a href="#1-2-文件目录" class="headerlink" title="1.2 文件目录"></a>1.2 文件目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">app_trend</span><br><span class="line">  &#x2F;code&#x2F; # 爬虫的python code放这儿</span><br><span class="line">  &#x2F;scrapy_web&#x2F; # scrapydweb 的 config，logs 以及 build file</span><br><span class="line">    &#x2F;app&#x2F;</span><br><span class="line">      # scrapydweb 的 config 文件 </span><br><span class="line">      # 用来override https:&#x2F;&#x2F;github.com&#x2F;my8100&#x2F;scrapydweb&#x2F;blob&#x2F;master&#x2F;scrapydweb&#x2F;default_settings.py</span><br><span class="line">      &#x2F;scrapydweb_settings_v10.py </span><br><span class="line">    &#x2F;logs&#x2F;</span><br><span class="line">    &#x2F;data&#x2F;</span><br><span class="line">    &#x2F;Dockerfile</span><br><span class="line">  &#x2F;scrapyd&#x2F;</span><br><span class="line">    &#x2F;scrapyd.conf</span><br><span class="line">    &#x2F;Dockerfile</span><br><span class="line">    &#x2F;data&#x2F;</span><br><span class="line">    # 远程调用scrapyd的任务的output会在这</span><br><span class="line">    &#x2F;code&#x2F;</span><br><span class="line">      # 自定义启动scrapyd的脚本</span><br><span class="line">      &#x2F;entrypoint.sh</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="1-2-创建-scrapydweb-镜像"><a href="#1-2-创建-scrapydweb-镜像" class="headerlink" title="1.2 创建 scrapydweb 镜像"></a>1.2 创建 scrapydweb 镜像</h3><p>Filename: <code>scrapy_web/Dockerfile</code></p>
+<details><summary>[展开文件]</summary>
+  
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM python:3.8-slim</span><br><span class="line"></span><br><span class="line">WORKDIR &#x2F;app</span><br><span class="line"></span><br><span class="line">EXPOSE 5000</span><br><span class="line"> RUN apt-get update &amp;&amp; \ </span><br><span class="line">   apt-get install -y git &amp;&amp; \</span><br><span class="line">   pip3 install -U git+https:&#x2F;&#x2F;github.com&#x2F;my8100&#x2F;scrapydweb.git &amp;&amp; \</span><br><span class="line">   apt-get remove -y git</span><br><span class="line"># 通过这个来override一些dependency的version</span><br><span class="line"># RUN pip3 install SQLAlchemy&#x3D;&#x3D;1.3.23 --upgrade</span><br><span class="line">CMD scrapydweb </span><br></pre></td></tr></table></figure>
+
+</details>
+
+
+<h3 id="1-3-创建-scrapyd-镜像"><a href="#1-3-创建-scrapyd-镜像" class="headerlink" title="1.3 创建 scrapyd 镜像"></a>1.3 创建 scrapyd 镜像</h3><p>[启动logparser和scrapyd] Filename: <code>scrapyd/code/entrypoint.sh</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">logparser -dir &#x2F;var&#x2F;lib&#x2F;scrapyd&#x2F;logs -t 10 --delete_json_files &amp; scrapyd</span><br></pre></td></tr></table></figure>
+
+<p>[创建镜像] Filename: <code>scrapyd/Dockerfile</code></p>
+<details><summary>[展开文件]</summary>
+  
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:buster</span><br><span class="line">MAINTAINER EasyPi Software Foundation</span><br><span class="line"></span><br><span class="line">ENV SCRAPY_VERSION&#x3D;2.4.1</span><br><span class="line">ENV SCRAPYD_VERSION&#x3D;1.2.1</span><br><span class="line">ENV PILLOW_VERSION&#x3D;8.1.0</span><br><span class="line"></span><br><span class="line">RUN set -xe \</span><br><span class="line">    &amp;&amp; apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y autoconf \</span><br><span class="line">                          build-essential \</span><br><span class="line">                          curl \</span><br><span class="line">                          git \</span><br><span class="line">                          libffi-dev \</span><br><span class="line">                          libssl-dev \</span><br><span class="line">                          libtool \</span><br><span class="line">                          libxml2 \</span><br><span class="line">                          libxml2-dev \</span><br><span class="line">                          libxslt1.1 \</span><br><span class="line">                          libxslt1-dev \</span><br><span class="line">                          python3 \</span><br><span class="line">                          python3-dev \</span><br><span class="line">                          python3-distutils \</span><br><span class="line">                          vim-tiny \</span><br><span class="line">    &amp;&amp; apt-get install -y libtiff5 \</span><br><span class="line">                          libtiff5-dev \</span><br><span class="line">                          libfreetype6-dev \</span><br><span class="line">                          libjpeg62-turbo \</span><br><span class="line">                          libjpeg62-turbo-dev \</span><br><span class="line">                          liblcms2-2 \</span><br><span class="line">                          liblcms2-dev \</span><br><span class="line">                          libwebp6 \</span><br><span class="line">                          libwebp-dev \</span><br><span class="line">                          zlib1g \</span><br><span class="line">                          zlib1g-dev \</span><br><span class="line">    &amp;&amp; curl -sSL https:&#x2F;&#x2F;bootstrap.pypa.io&#x2F;get-pip.py | python3 \</span><br><span class="line">    &amp;&amp; pip install git+https:&#x2F;&#x2F;github.com&#x2F;scrapy&#x2F;scrapy.git@$SCRAPY_VERSION \</span><br><span class="line">                   git+https:&#x2F;&#x2F;github.com&#x2F;scrapy&#x2F;scrapyd.git@$SCRAPYD_VERSION \</span><br><span class="line">                   git+https:&#x2F;&#x2F;github.com&#x2F;scrapy&#x2F;scrapyd-client.git \</span><br><span class="line">                   git+https:&#x2F;&#x2F;github.com&#x2F;scrapinghub&#x2F;scrapy-splash.git \</span><br><span class="line">                   git+https:&#x2F;&#x2F;github.com&#x2F;scrapinghub&#x2F;scrapyrt.git \</span><br><span class="line">                   git+https:&#x2F;&#x2F;github.com&#x2F;python-pillow&#x2F;Pillow.git@$PILLOW_VERSION \</span><br><span class="line">    &amp;&amp; pip install logparser \</span><br><span class="line">    &amp;&amp; curl -sSL https:&#x2F;&#x2F;github.com&#x2F;scrapy&#x2F;scrapy&#x2F;raw&#x2F;master&#x2F;extras&#x2F;scrapy_bash_completion -o &#x2F;etc&#x2F;bash_completion.d&#x2F;scrapy_bash_completion \</span><br><span class="line">    &amp;&amp; echo &#39;source &#x2F;etc&#x2F;bash_completion.d&#x2F;scrapy_bash_completion&#39; &gt;&gt; &#x2F;root&#x2F;.bashrc \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove autoconf \</span><br><span class="line">                                       build-essential \</span><br><span class="line">                                       curl \</span><br><span class="line">                                       libffi-dev \</span><br><span class="line">                                       libssl-dev \</span><br><span class="line">                                       libtool \</span><br><span class="line">                                       libxml2-dev \</span><br><span class="line">                                       libxslt1-dev \</span><br><span class="line">                                       python3-dev \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove libtiff5-dev \</span><br><span class="line">                                       libfreetype6-dev \</span><br><span class="line">                                       libjpeg62-turbo-dev \</span><br><span class="line">                                       liblcms2-dev \</span><br><span class="line">                                       libwebp-dev \</span><br><span class="line">                                       zlib1g-dev \</span><br><span class="line">    &amp;&amp; rm -rf &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists&#x2F;*</span><br><span class="line"></span><br><span class="line">EXPOSE 6800</span><br><span class="line">VOLUME [&quot;&#x2F;code&quot;]</span><br><span class="line">WORKDIR &#x2F;code</span><br><span class="line">RUN [&quot;chmod&quot;, &quot;777&quot;, &quot;entrypoint.sh&quot;]</span><br><span class="line">ENTRYPOINT [&quot;.&#x2F;entrypoint.sh&quot;]</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<p>[scrapyd的设置文件] Filename: <code>scrapyd/scrapyd.conf</code></p>
+<details><summary>[展开文件]</summary>
+  
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[scrapyd]</span><br><span class="line">eggs_dir          &#x3D; &#x2F;var&#x2F;lib&#x2F;scrapyd&#x2F;eggs</span><br><span class="line">logs_dir          &#x3D; &#x2F;var&#x2F;lib&#x2F;scrapyd&#x2F;logs</span><br><span class="line">items_dir         &#x3D; &#x2F;var&#x2F;lib&#x2F;scrapyd&#x2F;items</span><br><span class="line">dbs_dir           &#x3D; &#x2F;var&#x2F;lib&#x2F;scrapyd&#x2F;dbs</span><br><span class="line">jobs_to_keep      &#x3D; 5</span><br><span class="line">max_proc          &#x3D; 0</span><br><span class="line">max_proc_per_cpu  &#x3D; 4</span><br><span class="line">finished_to_keep  &#x3D; 100</span><br><span class="line">poll_interval     &#x3D; 5</span><br><span class="line">#设置成0.0.0.0来允许外网访问</span><br><span class="line">bind_address      &#x3D; 0.0.0.0</span><br><span class="line">http_port         &#x3D; 6800</span><br><span class="line">debug             &#x3D; off</span><br><span class="line">runner            &#x3D; scrapyd.runner</span><br><span class="line">application       &#x3D; scrapyd.app.application</span><br><span class="line">launcher          &#x3D; scrapyd.launcher.Launcher</span><br><span class="line"></span><br><span class="line">[services]</span><br><span class="line">schedule.json     &#x3D; scrapyd.webservice.Schedule</span><br><span class="line">cancel.json       &#x3D; scrapyd.webservice.Cancel</span><br><span class="line">addversion.json   &#x3D; scrapyd.webservice.AddVersion</span><br><span class="line">listprojects.json &#x3D; scrapyd.webservice.ListProjects</span><br><span class="line">listversions.json &#x3D; scrapyd.webservice.ListVersions</span><br><span class="line">listspiders.json  &#x3D; scrapyd.webservice.ListSpiders</span><br><span class="line">delproject.json   &#x3D; scrapyd.webservice.DeleteProject</span><br><span class="line">delversion.json   &#x3D; scrapyd.webservice.DeleteVersion</span><br><span class="line">listjobs.json     &#x3D; scrapyd.webservice.ListJobs</span><br><span class="line">daemonstatus.json &#x3D; scrapyd.webservice.DaemonStatus</span><br></pre></td></tr></table></figure>
+
+</details>
+
+
+<h4 id="1-4-编写-docker-compose-文件来定义-container"><a href="#1-4-编写-docker-compose-文件来定义-container" class="headerlink" title="1.4 编写 docker-compose 文件来定义 container"></a>1.4 编写 docker-compose 文件来定义 container</h4><p>Filename: <code>docker-compose.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">scrapy:</span><br><span class="line">  image: vimagick&#x2F;scrapyd:py3</span><br><span class="line">  command: bash</span><br><span class="line">  volumes:</span><br><span class="line">    - .&#x2F;code:&#x2F;code</span><br><span class="line">  working_dir: &#x2F;code</span><br><span class="line">  restart: unless-stopped</span><br><span class="line"></span><br><span class="line">scrapy_web:</span><br><span class="line">  container_name: scrapy_web</span><br><span class="line">  restart: unless-stopped</span><br><span class="line">  build: .&#x2F;scrapy_web&#x2F;</span><br><span class="line">  ports:</span><br><span class="line">    - &quot;80:80&quot;</span><br><span class="line">  expose:</span><br><span class="line">    - &quot;80&quot;</span><br><span class="line">  volumes:</span><br><span class="line">    - .&#x2F;scrapy_web&#x2F;app:&#x2F;app</span><br><span class="line">    - .&#x2F;scrapy_web&#x2F;logs:&#x2F;logs</span><br><span class="line">    - .&#x2F;scrapy_web&#x2F;data:&#x2F;data</span><br><span class="line">    - .&#x2F;code:&#x2F;code</span><br><span class="line">  environment:</span><br><span class="line">    - PASSWORD</span><br><span class="line">    - USERNAME</span><br><span class="line">    # 填入本机IP 或者其他运行了爬虫的机器</span><br><span class="line">    - SCRAPYD_SERVER_1&#x3D;[Your_IP]:6800</span><br><span class="line">    - PORT&#x3D;80</span><br><span class="line">    - DATA_PATH&#x3D;&#x2F;data</span><br><span class="line">  depends_on:</span><br><span class="line">    - scrapyd</span><br><span class="line"></span><br><span class="line">scrapyd:</span><br><span class="line">  container_name: scrapyd</span><br><span class="line">  build: .&#x2F;scrapyd</span><br><span class="line">  ports:</span><br><span class="line">    - &quot;6800:6800&quot;</span><br><span class="line">  volumes:</span><br><span class="line">    - .&#x2F;scrapyd&#x2F;scrapyd.conf:&#x2F;etc&#x2F;scrapyd&#x2F;scrapyd.conf</span><br><span class="line">    - .&#x2F;scrapyd&#x2F;data:&#x2F;var&#x2F;lib&#x2F;scrapyd</span><br><span class="line">    - .&#x2F;scrapyd&#x2F;code:&#x2F;code</span><br><span class="line">  restart: unless-stopped</span><br></pre></td></tr></table></figure>
+<h4 id="1-5-启动-docker-容器"><a href="#1-5-启动-docker-容器" class="headerlink" title="1.5 启动 docker 容器"></a>1.5 启动 docker 容器</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p> 现在可以通过80端口来访问啦</p>
+<h4 id="1-6-编写-scrapy-项目"><a href="#1-6-编写-scrapy-项目" class="headerlink" title="1.6 编写 scrapy 项目"></a>1.6 编写 scrapy 项目</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose run --rm scrapy</span><br></pre></td></tr></table></figure>
+<p>会启动一个设置好scrapy的容器 在里面可以直接用 <code>scrapy startproject tutorial</code> 并测试你的spider啦<br>而与此同时这个容器内的 <code>/code</code> 实际上对应的就是外部的 <code>code</code> folder，所以任何文件操作都会保存在这并能从外部访问</p>
+</div></article></div><div class="right-container"><div class="widget"><div id="arAnchorBar"></div></div></div></section></div><div class="right-menu"></div><div class="modal search-modal"><div class="input-field"><input type="text" id="search_input"><label for="search-input">搜索</label></div><div id="search_result" class="search-result"></div></div><div class="blog-overlay"></div><footer class="row"><div class="footer-con"><div class="paginator"><a href="/2021/03/18/Trending-Apps-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90%E6%B5%81%E8%A1%8C%E5%BA%94%E7%94%A8-%E9%87%87%E9%9B%86%E7%AF%87-%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE-2/" title="Trending Apps: 从头开始分析流行应用 - 采集篇 - 环境设置 - 2" class="prev">上一篇</a></div><a href="#comment" class="comment-anchor"></a><div id="vcomments"></div><script>new Valine({
+    el: "#vcomments",
+    appId: "3B5inNt35pHjOqOh1kV2Dizv-MdYXbMMI",
+    appKey: "IbOq02P13bE1ehn3a08IJmgQ",
+    notify: false,
+    verify: false,
+    avatar: "robohash",
+    visitor: true,
+    placeholder: "随便说点什么～.～",
+});</script><div class="copyright"><p>© 2016 - 2021 <a target="_blank">robot9</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <br> and <a href="https://github.com/Bulandent/hexo-theme-bubuzou" target="_blank">hexo-theme-bubuzou</a></p><p> <span style="padding-right: 6px;">备案是什么 不存在的</span></p></div><div class="totop"><i></i></div></div></footer><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/jquery-1.8.2.min.js"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/articleCatalog.js"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/main.js"></script><script>const valineAPI = (() => {
+try {
+    AV.init("3B5inNt35pHjOqOh1kV2Dizv-MdYXbMMI", "IbOq02P13bE1ehn3a08IJmgQ");
+} catch(error) {}
+const isExist = (identity) => {
+    identity = identity || getRealPath();
+    let query = new AV.Query('Timer');
+    return new Promise((resolve, reject) => {
+    query.equalTo("identity", identity);
+    query.find().then(results => {
+        resolve(results.length > 0);
+    }, error => reject(error));
+    })
+}
+
+const _get = (identity) => {
+    let query = null;
+    if(identity && identity instanceof Array){
+    let querys = [];
+    for(let i = 0; i < identity.length; ++i) {
+        querys[i] = new AV.Query('Timer');
+        querys[i].equalTo('identity', identity[i]);
+    }
+    query = AV.Query.or.apply(null ,querys);
+    } else {
+    identity = identity || getRealPath();
+    query = new AV.Query("Timer");
+    query.equalTo("identity", identity);
+    }
+
+    return new Promise((resolve, reject) => {
+    query.find()
+    .then(results => resolve(results))
+    .catch(error => reject(error))
+    })
+}
+
+const create = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+    let Todo = AV.Object.extend('Timer');
+    let todo = new Todo();
+    todo.set("times", 1);
+    todo.set("identity", identity);
+    todo.save().then(res => resolve(true), error => reject(error));
+    })
+}
+
+const update = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+    let query = new AV.Query('Timer');
+    query.equalTo("identity", identity);
+    query.find().then(todos => {
+        todos.forEach(todo => {
+        todo.set("times", todo.attributes.times + 1);
+        });
+        return AV.Object.saveAll(todos);
+    }).then(todos => resolve(true), error => reject(error));
+    })
+}
+
+return {
+    isExist,
+    _get,
+    update,
+    create
+}
+})()
+
+const calcAndWriteTimes = () => {
+let isPost = true;
+
+let timerAllDOM = document.querySelectorAll(".article-timer");
+
+if(isPost) {
+    let identity = timerAllDOM[0].getAttribute("data-identity");
+    valineAPI.isExist(identity)
+    .then(exist => {
+    if(exist) {
+        return valineAPI.update(identity);
+    }
+    return new Promise(resolve => resolve(true));
+    })
+    .then( succuess => valineAPI._get(identity))
+    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
+    .catch(error => console.log(error.message))
+    return ;
+}
+
+let timerDOMCache = {};
+
+for(let timerDOM of timerAllDOM) {
+    let identity = timerDOM.getAttribute("data-identity");
+    if(timerDOMCache.hasOwnProperty(identity)){
+    timerDOMCache[identity].dom.push(timerDOM);
+    }else{
+    timerDOMCache[identity] = {
+        dom: [timerDOM],
+        times: undefined
+    };
+    }
+}
+
+let identities = Object.keys(timerDOMCache);
+valineAPI._get(identities).then(results => {
+    for(let result of results) {
+    let {identity, times} = result.attributes;
+    timerDOMCache[identity].times = times;
+    timerDOMCache[identity].dom.map(item => item.innerText = times);
+    }
+    for(let identity of identities) {
+    if(timerDOMCache[identity].times){
+        continue;
+    }
+    timerDOMCache[identity].dom.map(item => item.innerText = 1);
+    valineAPI.create(identity);
+    }
+}).catch(error => console.log(error.message))
+}
+
+if(true){
+calcAndWriteTimes();
+}</script></body></html>
